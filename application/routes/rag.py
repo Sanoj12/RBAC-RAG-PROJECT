@@ -25,20 +25,24 @@ def get_user(token: str):
 
 
 @router.post("/query")
-def ask_questions(data:QueryRequest, credentials=Depends(security)):
-    token = credentials.credentials
-    user = get_user(token)
+def ask_questions(data: QueryRequest, credentials=Depends(security)):
+    try:
+        token = credentials.credentials
+        user = get_user(token)
 
-    answer = retrieve_answer(
-        query = data.query,
-        department = user["department"]
-    )
-    return {
-        "answer": answer,
-        "department": user["department"]
-    }
-    
-    
+        answer = retrieve_answer(
+            query=data.query,
+            department=user["department"]
+        )
+
+        return {
+            "answer": answer,
+            "department": user["department"]
+        }
+
+    except Exception as e:
+        print("ERROR:", repr(e))
+        return {"error": str(e)}
     
 
     

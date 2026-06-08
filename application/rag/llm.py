@@ -14,6 +14,6 @@ def generate_answer(prompt):
         ]
         
     )
-
-
-    return response["messages"]["content"]
+    print(response)
+    return response["message"]["content"]
+    

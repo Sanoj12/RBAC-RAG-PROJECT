@@ -14,11 +14,11 @@ session= Session()
 def add_user(name, email, password,department):
     try:
       
-
+       hashed_password = hashing_password(password)
        user = User(
            name=name,
            email=email,
-           password=hashing_password,
+           password=hashed_password,
            department=department
        )
 

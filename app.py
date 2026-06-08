@@ -71,6 +71,8 @@ def ask_question(query):
         headers=headers
     )
 
+    print(response.text)
+
     return response.json()
 
 
@@ -144,5 +146,18 @@ else:
 
         if st.button("Submit"):
 
-            result = ask_question(query)
-            st.write(result)
+          result = ask_question(query)
+
+          if "error" in result:
+            st.error(result["error"])
+          else:
+            st.subheader("Answer")
+            st.write(result["answer"])
+
+
+
+if st.session_state.token:
+
+    if st.sidebar.button("Logout"):
+        st.session_state.clear()
+        st.rerun()
