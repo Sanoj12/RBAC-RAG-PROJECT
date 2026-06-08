@@ -38,7 +38,7 @@ jobs:
 
       steps:
         - name: Checkout code
-          uses: actions/checkout@04
+          uses: actions/checkout@v4
 
         - name: Docker login to Docker Hub
           run : |
